@@ -1,0 +1,6 @@
+.idea
+/Utils/__pycache__
+/Models/__pycache__
+*.pdf
+ProjectDetails.txt
+*.pptx

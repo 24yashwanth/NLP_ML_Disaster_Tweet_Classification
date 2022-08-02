@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Know What's Real</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="icon"
+      href="/static/images/logo.png"
+      sizes="16x16 32x32"
+      type="image/png"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+      }
+      .container-row1 {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        background-color: red;
+      }
+      .container-row2 {
+        display: flex;
+        flex-grow: 1;
+        background-color: yellow;
+      }
+      .col-1 {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .col-2 {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      @media screen and (max-width: 450px) {
+        .main-container {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container-row1">
+        <h1>Know What's Real</h1>
+      </div>
+      <div class="container-row2">
+        <div class="col-1">
+          <img src="static/images/logo.png" class="logo" alt="Image" />
+        </div>
+        <div class="col-2">
+          <form action="/predict" method="post">
+            <div class="mb-3">
+              <label for="TweetText" class="form-label">Tweet Text</label>
+              <input type="text" class="form-control" name="TweetText" placeholder="Tweet"/>
+            </div>
+            <div class="mb-3">
+              <label for="TweetKeyWord" class="form-label">Tweet KeyWord</label>
+              <input type="text" class="form-control" name="TweetKeyWord" placeholder="Keyword"/>
+            </div>
+            <div class="mb-3">
+              <label for="TweetLocation" class="form-label"
+                >Tweet Location</label
+              >
+              <input type="text" class="form-control" name="TweetLocation" placeholder="Location"/>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Predict</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

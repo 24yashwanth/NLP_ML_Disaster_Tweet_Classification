@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Know What's Real</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="icon"
+      href="/static/images/logo.png"
+      sizes="16x16 32x32"
+      type="image/png"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+      .container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+      }
+      .container-row1 {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        background-color: rgb(255, 0, 0);
+      }
+      .container-row2 {
+        display: flex;
+        flex-grow: 1;
+        background-color: yellow;
+      }
+      .container-row3 {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        align-items: center;
+        background-color: rebeccapurple;
+      }
+      .col-1 {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .col-2 {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      @media screen and (max-width: 450px) {
+        .main-container {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    {% if loading == True %}
+        <h1>Loading...</h1>
+      {% else %}
+      <div class="container">
+        <div class="container-row1">
+          <h1>Know What's Real</h1>
+        </div>
+        <div class="container-row2">
+          <div class="col-1">
+            <img src="static/images/logo.png" class="logo" alt="Image" />
+          </div>
+          <div class="col-2">
+            <form action="/predict" method="post">
+              <div class="mb-3">
+                <label for="TweetText" class="form-label">Tweet Text</label>
+                <input type="text" class="form-control" name="TweetText" />
+              </div>
+              <div class="mb-3">
+                <label for="TweetKeyWord" class="form-label"
+                  >Tweet KeyWord</label
+                >
+                <input type="text" class="form-control" name="TweetKeyWord" />
+              </div>
+              <div class="mb-3">
+                <label for="TweetLocation" class="form-label"
+                  >Tweet Location</label
+                >
+                <input type="text" class="form-control" name="TweetLocation" />
+              </div>
+              <br />
+              <button type="submit" class="btn btn-primary">Predict</button>
+            </form>
+          </div>
+        </div>
+        <div class="container-row3">
+          <div>
+            <label>Naive Bayes Predicted</label><br>
+            <label>Accuracy = {{accuracyNB}}, </label>
+            {% if naiveBayesPredicted==1 %}
+              <label>Disaster Tweet ({{naiveBayesPredicted}})</label>
+            {% else %}
+              <label >Non-Disaster Tweet ({{naiveBayesPredicted}})</label>
+            {% endif %}
+          </div>
+          <div>
+            <label>Logistic Regression Predicted</label><br>
+            <label>Accuracy = {{accuracyLR}}, </label>
+            {% if logisticRegressionPredicted==1 %}
+              <label>Disaster Tweet ({{logisticRegressionPredicted}})</label>
+            {% else %}
+              <label >Non-Disaster Tweet ({{logisticRegressionPredicted}})</label>
+            {% endif %}
+          </div>
+          <div>
+            <label>K Nearest Neighbours Predicted</label><br>
+            <label>Accuracy = {{accuracyKN}}, </label>
+            {% if kNearestNeighboursPredicted==1 %}
+              <label>Disaster Tweet ({{kNearestNeighboursPredicted}})</label>
+            {% else %}
+              <label >Non-Disaster Tweet ({{kNearestNeighboursPredicted}})</label>
+            {% endif %}
+          </div>
+          <div>
+            <label>Decision Tree Predicted</label><br>
+            <label>Accuracy = {{accuracyDT}}, </label>
+            {% if decisionTreePredicted==1 %}
+              <label>Disaster Tweet ({{decisionTreePredicted}})</label>
+            {% else %}
+              <label >Non-Disaster Tweet ({{decisionTreePredicted}})</label>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
